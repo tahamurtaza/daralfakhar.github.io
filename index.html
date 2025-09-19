@@ -1,439 +1,947 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rida & Topi Shop — Dar Al Fakhar</title>
-  <meta name="description" content="Professional tailoring — corporate, school & traditional wear. Enquire via WhatsApp." />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#ffffff;
-      --text:#111827; /* dark gray */
-      --muted:#6b7280;
-      --accent:#0b60d6; /* blue accent as requested */
-      --card-radius:12px;
-      --shadow: 0 10px 30px rgba(15,23,42,0.06);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dar Al Fakhar Tailoring</title>
+    <meta name="description" content="Professional tailoring — corporate, school & traditional wear. Enquire via WhatsApp." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8f9fa; /* Lighter background */
+            --text: #212529; /* Dark gray */
+            --muted: #6c757d;
+            --accent: #007bff; /* A nice blue */
+            --accent-hover: #0056b3;
+            --card-bg: #ffffff;
+            --card-radius: 16px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --header-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s ease;
+        }
 
-    /* Header */
-    header{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:1px solid #eef2ff}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#2b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Playfair Display',serif}
-    .brand h1{margin:0;font-size:18px}
-    nav{display:flex;gap:12px}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
-    nav a:hover{background:rgba(11,96,214,0.06);color:var(--accent)}
+        * {
+            box-sizing: border-box;
+        }
 
-    /* Container */
-    .container{max-width:1200px;margin:26px auto;padding:0 20px}
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-    /* Hero */
-    .hero{display:flex;gap:24px;align-items:center;margin-bottom:20px}
-    .hero-left{flex:1}
-    .hero-title{font-family:'Playfair Display',serif;font-size:28px;margin:0 0 8px;color:var(--accent)}
-    .hero-sub{color:var(--muted);margin:0 0 16px}
-    .hero-cta{display:flex;gap:12px}
-    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    .btn.ghost{background:transparent;border:1px solid rgba(11,96,214,0.1);color:var(--accent)}
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    /* Search & Filters */
-    .controls{display:flex;gap:12px;align-items:center;margin-top:12px}
-    .search{flex:1;display:flex;gap:8px}
-    .search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6eefc}
-    .filters{display:flex;gap:8px}
-    .chip{padding:8px 12px;border-radius:999px;background:#f8fafc;border:1px solid #eef2ff;color:var(--muted);cursor:pointer;font-weight:600}
-    .chip.active{background:rgba(11,96,214,0.08);color:var(--accent);border-color:rgba(11,96,214,0.12)}
+        /* --- Header --- */
+        header {
+            background: var(--card-bg);
+            padding: 16px 24px;
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: var(--header-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), #004d99);
+            color: #fff;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            overflow: hidden; /* Ensures image stays within bounds */
+        }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills the container */
+        }
+        .brand h1 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--text);
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        nav a:hover {
+            color: var(--accent);
+        }
+        .header-cta {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .btn.primary {
+            background: var(--accent);
+            color: #fff;
+            border: 1px solid var(--accent);
+        }
+        .btn.primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid #ced4da;
+            color: var(--accent);
+        }
+        .btn.ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent-hover);
+        }
 
-    /* Grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:22px}
-    .product{background:#fff;border-radius:var(--card-radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s}
-    .product:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(15,23,42,0.08)}
-    .product .media{height:220px;position:relative;background:#f8fafc;display:flex;align-items:center;justify-content:center}
-    .product .media img{width:100%;height:100%;object-fit:cover}
-    .product .body{padding:12px 14px;flex:1;display:flex;flex-direction:column}
-    .product h3{margin:0;font-size:16px;color:var(--text);font-family:'Playfair Display',serif}
-    .product h4{margin:6px 0 0;font-size:13px;color:var(--muted);font-weight:500}
-    .price{margin-top:10px;font-weight:700;color:var(--accent)}
-    .actions{margin-top:auto;display:flex;gap:8px}
-    .actions .btn{flex:1}
+        /* --- Hero --- */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0 0 16px;
+            color: var(--text);
+            line-height: 1.2;
+        }
+        .hero-sub {
+            color: var(--muted);
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 32px;
+        }
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+        .search-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            font-size: 1rem;
+            transition: border-color var(--transition);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .chip {
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: #e9ecef;
+            border: 1px solid transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .chip:hover {
+            background: #dee2e6;
+        }
+        .chip.active {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
 
-    /* Modal */
-    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
-    .modal.show{display:flex}
-    .modal-card{width:100%;max-width:920px;background:#fff;border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr 380px}
-    .modal-left{padding:14px;background:#fff}
-    .modal-right{padding:18px;background:#fafafa}
-    .modal-title{font-family:'Playfair Display',serif;margin:0 0 6px;font-size:20px;color:var(--accent)}
-    .modal-price{font-weight:700;color:var(--accent);margin:8px 0}
-    .modal-desc{color:var(--muted);font-size:14px}
-    .close-btn{position:absolute;right:22px;top:18px;background:#fff;border-radius:999px;padding:6px 9px;cursor:pointer;border:1px solid #eef2ff}
+        /* --- Products Grid --- */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 48px 0 24px;
+            text-align: center;
+            color: var(--text);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .product {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.22s, box-shadow 0.22s;
+        }
+        .product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        .product .media {
+            position: relative;
+            background: #f8f9fa;
+            width: 100%;
+            height: 300px; /* Uniform height for all images */
+            overflow: hidden;
+        }
+        .product .media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* This is the key change for aspect ratio */
+            object-position: center;
+            padding: 20px; /* Add some padding to prevent images from touching the edge */
+            transition: transform 0.3s ease;
+        }
+        .product:hover .media img {
+            transform: scale(1.05);
+        }
+        .product .body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+        }
+        .product h4 {
+            margin: 4px 0 0;
+            font-size: 0.875rem;
+            color: var(--muted);
+            font-weight: 400;
+        }
+        .price {
+            margin-top: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            padding-top: 16px;
+        }
+        .actions .btn {
+            flex: 1;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
 
-    /* Slideshow inside modal */
-    .carousel{position:relative;border-radius:10px;overflow:hidden}
-    .carousel img{width:100%;height:420px;object-fit:cover;display:block}
-    .carousel .thumbs{display:flex;gap:8px;margin-top:10px}
-    .carousel .thumbs img{width:70px;height:70px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0.8;border:2px solid transparent}
-    .carousel .thumbs img.active{opacity:1;border-color:var(--accent)}
-    .carousel .nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:999px;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer}
-    .carousel .nav.prev{left:12px}
-    .carousel .nav.next{right:12px}
+        /* --- Services --- */
+        .services-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .services-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .services-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .service-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            text-align: left;
+            max-width: 380px;
+        }
+        .service-item h4 {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 0 0 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        .service-item p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
 
-    /* Footer */
-    footer{padding:22px;text-align:center;color:var(--muted);border-top:1px solid #eef2ff;margin-top:28px}
+        /* --- Footer --- */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid #e9ecef;
+            margin-top: 40px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .footer-link:hover {
+            color: var(--accent-hover);
+        }
 
-    @media (max-width:900px){
-      .modal-card{grid-template-columns:1fr}
-      .carousel img{height:260px}
-    }
-  </style>
+        /* --- Modal --- */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-card {
+            width: 100%;
+            max-width: 980px;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .modal-left {
+            padding: 24px;
+        }
+        .modal-right {
+            padding: 24px;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        .close-btn:hover {
+            background: #f1f1f1;
+            color: var(--text);
+        }
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 0 0 8px;
+            color: var(--accent);
+        }
+        .modal-price {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-hover);
+            margin: 8px 0 16px;
+        }
+        .modal-desc {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .modal-actions .btn {
+            padding: 12px 24px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Modal Carousel */
+        .carousel {
+            position: relative;
+        }
+        .carousel-main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            object-position: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f8f9fa;
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+        .carousel-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .carousel-nav.prev {
+            left: 10px;
+        }
+        .carousel-nav.next {
+            right: 10px;
+        }
+        .thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .thumbs::-webkit-scrollbar {
+            display: none;
+        }
+        .thumbs img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        .thumbs img.active, .thumbs img:hover {
+            opacity: 1;
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 992px) {
+            .modal-card {
+                grid-template-columns: 1fr;
+            }
+            .modal-left, .modal-right {
+                padding: 20px;
+            }
+            .carousel-main-img {
+                height: 280px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-sub {
+                font-size: 1rem;
+            }
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav, .header-cta {
+                display: none;
+            }
+            .search-controls {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .filters {
+                justify-content: center;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div class="logo"><img src="logo.jpg" alt="Logo"></div>
-      <div>
-        <h1>Dar Al Fakhar Tailoring</h1>
-      </div>
-    </div>
-    <nav>
-      <a href="#products">Products</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div style="display:flex;gap:8px;align-items:center">
-      <a class="btn" href="tel:+971501523584">Call</a>
-      <a class="btn ghost" href="https://wa.me/971501523584?text=Hello%20Dar%20Al%20Fakhar">WhatsApp</a>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <h2 class="hero-title">Specialist in Corporate, Staff & School Uniforms</h2>
-        <p class="hero-sub">Quality tailoring with fast turnaround. Custom embroidery, DTF printing, sublimation and bulk corporate packages. Browse our collection below.</p>
-        <div class="hero-cta">
-          <a class="btn" href="#products">Shop All</a>
-          <a class="btn ghost" href="#services">Our Services</a>
+    <header>
+        <div class="container header-content">
+            <div class="brand">
+                <div class="logo"><img src="logo.jpg" alt="Dar Al Fakhar Logo"></div>
+                <div>
+                    <h1>Dar Al Fakhar Tailoring</h1>
+                </div>
+            </div>
+            <nav>
+                <a href="#products">Products</a>
+                <a href="#services">Services</a>
+            </nav>
+            <div class="header-cta">
+                <a class="btn primary" href="https://wa.me/971501523584?text=Hello%20Dar%20Al%20Fakhar">WhatsApp</a>
+                <a class="btn ghost" href="tel:+971501523584">Call</a>
+            </div>
         </div>
+    </header>
 
-        <div class="controls">
-          <div class="search">
-            <input id="search" placeholder="Search products (e.g. Sherwani, Rida)" aria-label="Search products">
-          </div>
-          <div class="filters" id="filters">
-            <div class="chip active" data-cat="all">All</div>
-            <div class="chip" data-cat="uniform">Uniform</div>
-            <div class="chip" data-cat="formal">Formal</div>
-            <div class="chip" data-cat="traditional">Traditional</div>
-            <div class="chip" data-cat="accessory">Accessories</div>
-          </div>
+    <main class="container">
+        <section class="hero">
+            <h2 class="hero-title">Custom Tailoring for a Perfect Fit</h2>
+            <p class="hero-sub">We specialize in corporate, school, and traditional wear. Our services include custom embroidery, printing, and bulk packages, all with a fast turnaround. Explore our collections and discover the quality difference.</p>
+            <div class="hero-cta">
+                <a class="btn primary" href="#products">Explore Products</a>
+                <a class="btn ghost" href="#services">Our Services</a>
+            </div>
+
+            <div class="search-controls">
+                <input id="search" class="search-input" placeholder="Search for products (e.g. Rida, Blazer)" aria-label="Search products">
+                <div class="filters" id="filters">
+                    <div class="chip active" data-cat="all">All</div>
+                    <div class="chip" data-cat="uniform">Uniform</div>
+                    <div class="chip" data-cat="formal">Formal</div>
+                    <div class="chip" data-cat="traditional">Traditional</div>
+                    <div class="chip" data-cat="accessory">Accessories</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products">
+            <h2 class="section-title">Our Products</h2>
+            <div class="grid" id="grid">
+                <article class="product" data-category="formal" data-images='["Pant.jpg","Pant_2.jpg"]' data-name="Pant" data-price="35dh – 45dh" data-desc="Formal, Informal">
+                    <div class="media"><img src="Pant.jpg" alt="Pant"></div>
+                    <div class="body">
+                        <h3>Pant</h3>
+                        <h4>Formal & Informal Styles</h4>
+                        <div class="price">35dh – 45dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Pant" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="formal" data-images='["Shirt.jpg","Shirt_2.jpg"]' data-name="Shirt" data-price="35dh – 55dh" data-desc="Formal, Informal">
+                    <div class="media"><img src="Shirt.jpg" alt="Shirt"></div>
+                    <div class="body">
+                        <h3>Shirt</h3>
+                        <h4>Formal & Informal Styles</h4>
+                        <div class="price">35dh – 55dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Shirt" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="formal" data-images='["Tshirt.jpg","Tshirt_2.jpg"]' data-name="T-Shirt" data-price="26dh – 53dh" data-desc="Round Neck, Polo">
+                    <div class="media"><img src="Tshirt.jpg" alt="T-Shirt"></div>
+                    <div class="body">
+                        <h3>T-Shirt</h3>
+                        <h4>Round Neck & Polo Styles</h4>
+                        <div class="price">26dh – 53dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20T-Shirt" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="formal" data-images='["Cargo Pant.jpg","CargoPant_2.jpg"]' data-name="Cargo Pant" data-price="50dh – 100dh" data-desc="Cargo style pant with pockets">
+                    <div class="media"><img src="Cargo Pant.jpg" alt="Cargo Pant"></div>
+                    <div class="body">
+                        <h3>Cargo Pant</h3>
+                        <h4>Durable Cargo Style</h4>
+                        <div class="price">50dh – 100dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Cargo%20Pant" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="accessory" data-images='["Tie.jpg","Tie_2.jpg"]' data-name="Tie" data-price="15dh – 25dh" data-desc="Classic ties for formal wear">
+                    <div class="media"><img src="Tie.jpg" alt="Tie"></div>
+                    <div class="body">
+                        <h3>Tie</h3>
+                        <h4>Classic Formal Ties</h4>
+                        <div class="price">15dh – 25dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Tie" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="accessory" data-images='["caps.jpg","caps_2.jpg"]' data-name="Cap" data-price="10dh – 28dh" data-desc="Caps available in various colors">
+                    <div class="media"><img src="caps.jpg" alt="Cap"></div>
+                    <div class="body">
+                        <h3>Cap</h3>
+                        <h4>Available in Various Colors</h4>
+                        <div class="price">10dh – 28dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Cap" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="formal" data-images='["blazer.jpg","blazer_2.jpg"]' data-name="Blazer" data-price="200dh – 300dh" data-desc="Premium blazers for corporate look">
+                    <div class="media"><img src="blazer.png" alt="Blazer"></div>
+                    <div class="body">
+                        <h3>Blazer</h3>
+                        <h4>Premium Corporate Look</h4>
+                        <div class="price">200dh – 300dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Blazer" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="uniform" data-images='["labour.jpg","labour_2.jpg"]' data-name="Labour Uniform" data-price="75dh – 150dh" data-desc="Durable workwear for labor staff">
+                    <div class="media"><img src="labour.jpg" alt="Labour Uniform"></div>
+                    <div class="body">
+                        <h3>Labour Uniform</h3>
+                        <h4>Durable & Hard-Wearing</h4>
+                        <div class="price">75dh – 150dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Labour%20Uniform" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="uniform" data-images='["school.jpg","school_2.jpg"]' data-name="School Uniform" data-price="30dh - 70dh" data-desc="Complete school uniform stitching">
+                    <div class="media"><img src="school.jpg" alt="School Uniform"></div>
+                    <div class="body">
+                        <h3>School Uniform</h3>
+                        <h4>Complete Uniform Stitching</h4>
+                        <div class="price">30dh - 70dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20School%20Uniform" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="uniform" data-images='["corporate.jpg","corporate_2.jpg"]' data-name="Corporate Uniform" data-price="75dh - 120dh" data-desc="Professional corporate uniform solutions">
+                    <div class="media"><img src="Corporate.jpg" alt="Corporate Uniform"></div>
+                    <div class="body">
+                        <h3>Corporate Uniform</h3>
+                        <h4>Professional & Tailored</h4>
+                        <div class="price">75dh - 120dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Corporate%20Uniform" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="traditional" data-images='["kurta saya fabric.jpg","kurta_2.jpg"]' data-name="Kurta Saya Izaar Fabric" data-price="130dh – 180dh" data-desc="Kurta Saya with Izaar fabric">
+                    <div class="media"><img src="kurta saya fabric.jpg" alt="Kurta"></div>
+                    <div class="body">
+                        <h3>Kurta Saya Izaar Fabric</h3>
+                        <h4>Classic Traditional Wear</h4>
+                        <div class="price">130dh – 180dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Kurta" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="traditional" data-images='["Color Kurta C.jpg","colorkurta_2.jpg"]' data-name="Color Kurta" data-price="40dh – 60dh" data-desc="Colorful kurta options">
+                    <div class="media"><img src="Color Kurta C.jpg" alt="Color Kurta"></div>
+                    <div class="body">
+                        <h3>Color Kurta</h3>
+                        <h4>Colorful Kurta Options</h4>
+                        <div class="price">40dh – 60dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Color%20Kurta" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="traditional" data-images='["Pehran.png","pehran_2.jpg"]' data-name="Pehran" data-price="40dh – 60dh" data-desc="Pehran traditional wear">
+                    <div class="media"><img src="Pehran.png" alt="Pehran"></div>
+                    <div class="body">
+                        <h3>Pehran</h3>
+                        <h4>Traditional Pehran Wear</h4>
+                        <div class="price">40dh – 60dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Pehran" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="traditional" data-images='["S.jpg","sherwani_2.jpg"]' data-name="Sherwani" data-price="150dh – 250dh" data-desc="Sherwani in premium fabrics">
+                    <div class="media"><img src="S.jpg" alt="Sherwani"></div>
+                    <div class="body">
+                        <h3>Sherwani</h3>
+                        <h4>Premium Fabrics</h4>
+                        <div class="price">150dh – 250dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Sherwani" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="traditional" data-images='["Rida.png","rida_2.jpg"]' data-name="Rida" data-price="70dh – 250dh" data-desc="Rida — modest traditional wear">
+                    <div class="media"><img src="Rida.png" alt="Rida"></div>
+                    <div class="body">
+                        <h3>Rida</h3>
+                        <h4>Modest Traditional Wear</h4>
+                        <div class="price">70dh – 250dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Rida" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-category="accessory" data-images='["Topi.png","topi_2.jpg"]' data-name="Topi" data-price="45dh – 60dh" data-desc="Topi caps in multiple designs">
+                    <div class="media"><img src="Topi.png" alt="Topi"></div>
+                    <div class="body">
+                        <h3>Topi</h3>
+                        <h4>Multiple Designs & Colors</h4>
+                        <div class="price">45dh – 60dh</div>
+                        <div class="actions">
+                            <button class="btn primary more">More Info</button>
+                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Topi" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="services" class="services-section">
+            <h2 class="services-title">Custom Tailoring & Services</h2>
+            <div class="services-list">
+                <div class="service-item">
+                    <h4>Custom Orders</h4>
+                    <p>Bring your own fabric or choose from our extensive catalog. We create bespoke garments tailored to your exact measurements and style preferences.</p>
+                </div>
+                <div class="service-item">
+                    <h4>Embroidery & Printing</h4>
+                    <p>Personalize your uniforms and apparel with our professional embroidery, DTF printing, and sublimation services. Perfect for corporate logos and unique designs.</p>
+                </div>
+                <div class="service-item">
+                    <h4>Bulk & Corporate Packages</h4>
+                    <p>We handle large-volume orders for companies and schools, providing professional and consistent uniforms with fast turnaround times and competitive pricing.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal" id="modal">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="close-btn" id="close">✕</button>
+            <div class="modal-left">
+                <div class="carousel" id="carousel">
+                    <img class="carousel-main-img" src="" alt="Main product image">
+                    <div class="thumbs" id="thumbs"></div>
+                    <button class="carousel-nav prev" id="prev">❮</button>
+                    <button class="carousel-nav next" id="next">❯</button>
+                </div>
+            </div>
+            <div class="modal-right">
+                <h3 id="modalTitle" class="modal-title">Product Title</h3>
+                <div id="modalPrice" class="modal-price">Price</div>
+                <p id="modalDesc" class="modal-desc">Description</p>
+                <div class="modal-actions">
+                    <a id="enquireLink" class="btn primary" target="_blank">Enquire on WhatsApp</a>
+                    <a id="quickCall" class="btn ghost" href="tel:+971501523584">Call</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Products Grid -->
-    <section id="products">
-      <div class="grid" id="grid">
-
-        <!-- All 17 products from your original list -->
-
-        <article class="product" data-category="formal" data-images='["Pant.jpg","Pant_2.jpg"]' data-name="Pant" data-price="35dh – 45dh" data-desc="Formal, Informal">
-          <div class="media"><img src="Pant.jpg" alt="Pant"></div>
-          <div class="body">
-            <h3>Pant</h3>
-            <div class="price">35dh – 45dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Pant" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="formal" data-images='["Shirt.jpg","Shirt_2.jpg"]' data-name="Shirt" data-price="35dh – 55dh" data-desc="Formal, Informal">
-          <div class="media"><img src="Shirt.jpg" alt="Shirt"></div>
-          <div class="body">
-            <h3>Shirt</h3>
-            <div class="price">35dh – 55dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Shirt" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="formal" data-images='["Tshirt.jpg","Tshirt_2.jpg"]' data-name="T-Shirt" data-price="26dh – 53dh" data-desc="Round Neck, Polo">
-          <div class="media"><img src="Tshirt.jpg" alt="T-Shirt"></div>
-          <div class="body">
-            <h3>T-Shirt</h3>
-            <div class="price">26dh – 53dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20T-Shirt" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="formal" data-images='["Cargo Pant.jpg","CargoPant_2.jpg"]' data-name="Cargo Pant" data-price="50dh – 100dh" data-desc="Cargo style pant with pockets">
-          <div class="media"><img src="Cargo Pant.jpg" alt="Cargo Pant"></div>
-          <div class="body">
-            <h3>Cargo Pant</h3>
-            <h4></h4>
-            <div class="price">50dh – 100dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Cargo%20Pant" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="accessory" data-images='["Tie.jpg","Tie_2.jpg"]' data-name="Tie" data-price="15dh – 25dh" data-desc="Classic ties for formal wear">
-          <div class="media"><img src="Tie.jpg" alt="Tie"></div>
-          <div class="body">
-            <h3>Tie</h3>
-            <h4></h4>
-            <div class="price">15dh – 25dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Tie" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="accessory" data-images='["caps.jpg","caps_2.jpg"]' data-name="Cap" data-price="10dh – 28dh" data-desc="Caps available in various colors">
-          <div class="media"><img src="caps.jpg" alt="Cap"></div>
-          <div class="body">
-            <h3>Cap</h3>
-            <h4></h4>
-            <div class="price">10dh – 28dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Cap" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="formal" data-images='["blazer.jpg","blazer_2.jpg"]' data-name="Blazer" data-price="200dh – 300dh" data-desc="Premium blazers for corporate look">
-          <div class="media"><img src="blazer.png" alt="Blazer"></div>
-          <div class="body">
-            <h3>Blazer</h3>
-            <h4></h4>
-            <div class="price">200dh – 300dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Blazer" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="uniform" data-images='["labour.jpg","labour_2.jpg"]' data-name="Labour Uniform" data-price="75dh – 150dh" data-desc="Durable workwear for labor staff">
-          <div class="media"><img src="labour.jpg" alt="Labour Uniform"></div>
-          <div class="body">
-            <h3>Labour Uniform</h3>
-            <h4></h4>
-            <div class="price">75dh – 150dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Labour%20Uniform" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="uniform" data-images='["school.jpg","school_2.jpg"]' data-name="School Uniform" data-price="30dh - 70dh" data-desc="Complete school uniform stitching">
-          <div class="media"><img src="school.jpg" alt="School Uniform"></div>
-          <div class="body">
-            <h3>School Uniform</h3>
-            <h4></h4>
-            <div class="price">30dh - 70dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20School%20Uniform" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="uniform" data-images='["corporate.jpg","corporate_2.jpg"]' data-name="Corporate Uniform" data-price="75dh - 120dh" data-desc="Professional corporate uniform solutions">
-          <div class="media"><img src="Corporate.jpg" alt="Corporate Uniform"></div>
-          <div class="body">
-            <h3>Corporate Uniform</h3>
-            <h4></h4>
-            <div class="price">75dh - 120dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Corporate%20Uniform" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="traditional" data-images='["kurta saya fabric.jpg","kurta_2.jpg"]' data-name="Kurta Saya Izaar Fabric" data-price="130dh – 180dh" data-desc="Kurta Saya with Izaar fabric">
-          <div class="media"><img src="kurta saya fabric.jpg" alt="Kurta"></div>
-          <div class="body">
-            <h3>Kurta Saya Izaar Fabric</h3>
-            <h4></h4>
-            <div class="price">130dh – 180dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Kurta" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="traditional" data-images='["Color Kurta C.jpg","colorkurta_2.jpg"]' data-name="Color Kurta" data-price="40dh – 60dh" data-desc="Colorful kurta options">
-          <div class="media"><img src="Color Kurta C.jpg" alt="Color Kurta"></div>
-          <div class="body">
-            <h3>Color Kurta</h3>
-            <h4></h4>
-            <div class="price">40dh – 60dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Color%20Kurta" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="traditional" data-images='["Pehran.png","pehran_2.jpg"]' data-name="Pehran" data-price="40dh – 60dh" data-desc="Pehran traditional wear">
-          <div class="media"><img src="Pehran.png" alt="Pehran"></div>
-          <div class="body">
-            <h3>Pehran</h3>
-            <h4></h4>
-            <div class="price">40dh – 60dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Pehran" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="traditional" data-images='["S.jpg","sherwani_2.jpg"]' data-name="Sherwani" data-price="150dh – 250dh" data-desc="Sherwani in premium fabrics">
-          <div class="media"><img src="S.jpg" alt="Sherwani"></div>
-          <div class="body">
-            <h3>Sherwani</h3>
-            <h4></h4>
-            <div class="price">150dh – 250dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Sherwani" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="traditional" data-images='["Rida.png","rida_2.jpg"]' data-name="Rida" data-price="70dh – 250dh" data-desc="Rida — modest traditional wear">
-          <div class="media"><img src="Rida.png" alt="Rida"></div>
-          <div class="body">
-            <h3>Rida</h3>
-            <h4></h4>
-            <div class="price">70dh – 250dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Rida" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-        <article class="product" data-category="accessory" data-images='["Topi.png","topi_2.jpg"]' data-name="Topi" data-price="45dh – 60dh" data-desc="Topi caps in multiple designs">
-          <div class="media"><img src="Topi.png" alt="Topi"></div>
-          <div class="body">
-            <h3>Topi</h3>
-            <h4></h4>
-            <div class="price">45dh – 60dh</div>
-            <div class="actions"><button class="btn more">More Information</button><a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Topi" target="_blank">Quick WhatsApp</a></div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" style="margin-top:28px">
-      <h3 style="font-family:'Playfair Display',serif;color:var(--accent)">Custom Tailoring & Services</h3>
-      <p style="color:var(--muted)">Embroidery, DTF printing, sublimation, rush orders, bulk/corporate packages. Bring your cloth or choose fabric from our catalog.</p>
-    </section>
-
-  </main>
-
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-left">
-        <div class="carousel" id="carousel">
-          <!-- main image will be injected here -->
-          <div class="nav prev" id="prev">❮</div>
-          <div class="nav next" id="next">❯</div>
-          <div class="thumbs" id="thumbs"></div>
-        </div>
-      </div>
-      <div class="modal-right">
-        <button class="close-btn" id="close">✕</button>
-        <h3 id="modalTitle" class="modal-title">Product Title</h3>
-        <div id="modalPrice" class="modal-price">Price</div>
-        <p id="modalDesc" class="modal-desc">Description</p>
-        <div style="margin-top:18px">
-          <a id="enquireLink" class="btn" target="_blank">Enquire on WhatsApp</a>
-          <a id="quickCall" class="btn ghost" href="tel:+971501523584" style="margin-left:10px">Call</a>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <footer>
-    <div class="container">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div style="color:var(--muted)">© 2025 Dar Al Fakhar Tailoring L.L.C — All rights reserved</div>
-        <div><a href="https://wa.me/971501523584" style="color:var(--accent);text-decoration:none">WhatsApp: +971 50 152 3584</a></div>
-      </div>
-    </div>
-  </footer>
+    <footer>
+        <div class="container footer-content">
+            <div style="color:var(--muted)">© 2025 Dar Al Fakhar Tailoring — All rights reserved</div>
+            <div><a href="https://wa.me/971501523584" class="footer-link">WhatsApp: +971 50 152 3584</a></div>
+        </div>
+    </footer>
 
-  <script>
-    // Filter chips
-    const chips = document.querySelectorAll('.chip');
-    const products = document.querySelectorAll('.product');
-    const searchInput = document.getElementById('search');
+    <script>
+        // Data and Elements
+        const products = Array.from(document.querySelectorAll('.product'));
+        const chips = document.querySelectorAll('.chip');
+        const searchInput = document.getElementById('search');
+        const grid = document.getElementById('grid');
 
-    function setActiveChip(cat){
-      chips.forEach(c=> c.classList.toggle('active', c.dataset.cat===cat));
-      filterProducts();
-    }
-    chips.forEach(c=> c.addEventListener('click', ()=> setActiveChip(c.dataset.cat)));
+        // Filter & Search Logic
+        function filterProducts() {
+            const activeCategory = document.querySelector('.chip.active').dataset.cat;
+            const query = searchInput.value.trim().toLowerCase();
+            
+            // Hide all products first to prevent flickering
+            products.forEach(p => p.style.display = 'none');
 
-    function filterProducts(){
-      const active = document.querySelector('.chip.active').dataset.cat;
-      const q = searchInput.value.trim().toLowerCase();
-      products.forEach(p=>{
-        const cat = p.dataset.category;
-        const name = p.dataset.name.toLowerCase();
-        const showCat = (active==='all') || (cat===active);
-        const showQuery = q === '' || name.includes(q);
-        p.style.display = (showCat && showQuery) ? 'flex' : 'none';
-      });
-    }
-    searchInput.addEventListener('input', filterProducts);
+            const filteredProducts = products.filter(p => {
+                const productCategory = p.dataset.category;
+                const productName = p.dataset.name.toLowerCase();
+                const matchesCategory = activeCategory === 'all' || productCategory === activeCategory;
+                const matchesSearch = query === '' || productName.includes(query);
+                return matchesCategory && matchesSearch;
+            });
 
-    // Modal logic
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalPrice = document.getElementById('modalPrice');
-    const enquireLink = document.getElementById('enquireLink');
-    const thumbs = document.getElementById('thumbs');
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const closeBtn = document.getElementById('close');
+            // Show the filtered products
+            filteredProducts.forEach(p => p.style.display = 'flex');
+        }
 
-    let currentImages = [];
-    let currentIndex = 0;
+        chips.forEach(c => c.addEventListener('click', () => {
+            chips.forEach(chip => chip.classList.remove('active'));
+            c.classList.add('active');
+            filterProducts();
+        }));
+        searchInput.addEventListener('input', filterProducts);
+        
+        // Modal Logic
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalPrice = document.getElementById('modalPrice');
+        const enquireLink = document.getElementById('enquireLink');
+        const mainImage = modal.querySelector('.carousel-main-img');
+        const thumbsContainer = document.getElementById('thumbs');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const closeBtn = document.getElementById('close');
 
-    function openModal(product){
-      const name = product.dataset.name;
-      const price = product.dataset.price;
-      const desc = product.dataset.desc;
-      currentImages = JSON.parse(product.dataset.images);
-      modalTitle.textContent = name;
-      modalPrice.textContent = price;
-      modalDesc.textContent = desc || '';
-      enquireLink.href = `https://wa.me/971501523584?text=Enquiry%20about%20${encodeURIComponent(name)}`;
+        let currentImages = [];
+        let currentIndex = 0;
 
-      // build carousel
-      thumbs.innerHTML = '';
-      currentImages.forEach((src, i)=>{
-        const t = document.createElement('img');
-        t.src = src; t.alt = name + ' ' + (i+1);
-        t.dataset.index = i;
-        t.addEventListener('click', ()=> showImage(i));
-        thumbs.appendChild(t);
-      });
-      showImage(0);
-      modal.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
+        function openModal(product) {
+            const name = product.dataset.name;
+            const price = product.dataset.price;
+            const desc = product.dataset.desc || '';
+            currentImages = JSON.parse(product.dataset.images);
 
-    function showImage(i){
-      currentIndex = (i + currentImages.length) % currentImages.length;
-      // set main image
-      let main = carousel.querySelector('.main-image');
-      if(!main){ main = document.createElement('img'); main.className='main-image'; carousel.insertBefore(main, carousel.firstChild); }
-      main.src = currentImages[currentIndex];
-      // highlight thumb
-      thumbs.querySelectorAll('img').forEach(img=> img.classList.toggle('active', +img.dataset.index === currentIndex));
-    }
+            modalTitle.textContent = name;
+            modalPrice.textContent = price;
+            modalDesc.textContent = desc;
+            enquireLink.href = `https://wa.me/971501523584?text=Enquiry%20about%20${encodeURIComponent(name)}`;
 
-    prevBtn.addEventListener('click', ()=> showImage(currentIndex-1));
-    nextBtn.addEventListener('click', ()=> showImage(currentIndex+1));
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
-    function closeModal(){ modal.classList.remove('show'); document.body.style.overflow = ''; }
+            // Build thumbnails
+            thumbsContainer.innerHTML = '';
+            currentImages.forEach((src, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.alt = `${name} thumbnail ${i + 1}`;
+                thumb.dataset.index = i;
+                thumb.addEventListener('click', () => showImage(i));
+                thumbsContainer.appendChild(thumb);
+            });
 
-    // attach open handlers to all product 'more' buttons
-    document.querySelectorAll('.product .more').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const product = e.currentTarget.closest('.product');
-        openModal(product);
-      });
-    });
+            showImage(0);
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
 
-    // graceful fallback: replace missing images with placeholder
-    document.querySelectorAll('img').forEach(img=> img.addEventListener('error', ()=> img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Poppins,Arial" font-size="20">Image not available</text></svg>'));
+        function showImage(index) {
+            currentIndex = (index + currentImages.length) % currentImages.length;
+            mainImage.src = currentImages[currentIndex];
+            thumbsContainer.querySelectorAll('img').forEach(img => {
+                img.classList.toggle('active', +img.dataset.index === currentIndex);
+            });
+        }
 
-    // initial filter
-    setActiveChip('all');
-  </script>
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+        nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Attach 'More Info' button listeners
+        document.querySelectorAll('.product .more').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const product = e.currentTarget.closest('.product');
+                openModal(product);
+            });
+        });
+
+        // Initial setup
+        filterProducts();
+    </script>
 </body>
 </html>
