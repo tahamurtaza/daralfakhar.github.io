@@ -9,11 +9,11 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #ffe5ec, #ffccd5); /* soft gradient */
+      background: linear-gradient(135deg, #ffe5ec, #ffccd5);
       color: #333;
     }
     header {
-      background: #9b2226; /* deep red */
+      background: #9b2226;
       padding: 1.5rem 2rem;
       text-align: center;
       font-size: 2rem;
@@ -57,7 +57,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
+      padding: 1.5rem 1rem;
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
     }
@@ -72,6 +72,10 @@
       border-radius: 12px;
       background: #f9f9f9;
       margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+    .card:hover img {
+      transform: scale(1.05);
     }
     .card h1 {
       font-size: 1.4rem;
@@ -80,7 +84,7 @@
       font-family: 'Playfair Display', serif;
     }
     .card h2, .card h3 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 400;
       color: #555;
       margin: 0.3rem 0;
@@ -92,17 +96,18 @@
       margin: 1rem 0;
     }
     .btn {
-      background: #0077b6; 
+      background: #0077b6;
       color: white;
       padding: 0.7rem 1.5rem;
       border-radius: 25px;
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     .btn:hover {
       background: #023e8a;
+      transform: scale(1.05);
     }
     .services {
       padding: 3rem 2rem;
@@ -147,7 +152,7 @@
   </section>
 
   <section class="categories">
-    <!-- Example Product Card -->
+    <!-- Casual Wear -->
     <div class="card">
       <img src="Pant.jpg" alt="Pant">
       <h1>Pant</h1>
@@ -155,9 +160,108 @@
       <p class="price">From 35dh to 45dh</p>
       <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Pant">Enquire on WhatsApp</a>
     </div>
-    
-    <!-- Keep all your product cards as they are (I left just one here as example, you’ll keep the rest the same) -->
-    <!-- Paste the rest of your product <div class="card"> ... </div> here -->
+    <div class="card">
+      <img src="ShirtB.jpg" alt="Shirt">
+      <h1>Shirt</h1>
+      <h2>Formal, Party Wear, Pattern</h2>
+      <h3>Customisation available</h3>
+      <p class="price">From 35dh to 55dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Shirt">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Tshirt.jpg" alt="T-Shirt">
+      <h1>T-Shirt</h1>
+      <h2>Polo, Collar, Full Sleeves, Half Sleeves</h2>
+      <h3>Fabrics: Dryfit, Cotton, Mesh, Pk Mesh, Coolfit, Honeycomb</h3>
+      <p class="price">From 26dh to 53dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20T-Shirt">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Cargo Pant.jpg" alt="Cargo Pant">
+      <h1>Cargo Pant</h1>
+      <h2>6 Pockets, 4 Pockets</h2>
+      <h3>Customisation Available</h3>
+      <p class="price">From 50dh to 100dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Cargo%20Pant">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Tie.jpg" alt="Tie">
+      <h1>Tie</h1>
+      <p class="price">From 15dh to 25dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Tie">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="caps.jpg" alt="Caps">
+      <h1>Caps</h1>
+      <h2>All Colors Available</h2>
+      <p class="price">From 15dh to 28dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Caps">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="blazer.png" alt="Blazer">
+      <h1>Blazer</h1>
+      <h2>Formal for Gents & Ladies</h2>
+      <p class="price">From 200dh to 300dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Blazer">Enquire on WhatsApp</a>
+    </div>
+
+    <!-- Uniforms -->
+    <div class="card">
+      <img src="labour.jpg" alt="Labour Uniform">
+      <h1>Labour Uniform</h1>
+      <p class="price">From 75dh to 150dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Labour%20Uniform">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="school.jpg" alt="School Uniform">
+      <h1>School Uniform</h1>
+      <p class="price">From 30dh to 70dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20School%20Uniform">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Corporate.jpg" alt="Corporate Uniform">
+      <h1>Corporate Uniform</h1>
+      <p class="price">From 75dh to 120dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Corporate%20Uniform">Enquire on WhatsApp</a>
+    </div>
+
+    <!-- Traditional -->
+    <div class="card">
+      <img src="kurta saya fabric.jpg" alt="Kurta/Saaya/Izaar">
+      <h1>Kurta / Saaya / Izaar Fabrics</h1>
+      <p class="price">From 130dh to 180dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Kurta%20Saaya%20Izaar">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Color Kurta C.jpg" alt="Color Kurta">
+      <h1>Color Kurta</h1>
+      <p class="price">From 45dh to 80dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Color Kurta">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Pehran.png" alt="Pehran">
+      <h1>Pehran</h1>
+      <p class="price">From 50dh to 80dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Pehran">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Sherwani.png" alt="Sherwani">
+      <h1>Sherwani</h1>
+      <p class="price">From 150dh to 250dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Sherwani">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Rida.png" alt="Rida">
+      <h1>Rida</h1>
+      <p class="price">From 70dh to 250dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Rida">Enquire on WhatsApp</a>
+    </div>
+    <div class="card">
+      <img src="Topi.png" alt="Topi">
+      <h1>Topi</h1>
+      <p class="price">From 45dh to 60dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Topi">Enquire on WhatsApp</a>
+    </div>
   </section>
 
   <section class="services">
