@@ -6,11 +6,13 @@
   <title>Rida & Topi Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
+    /* General Styles */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       background: linear-gradient(135deg, #ffe5ec, #ffccd5);
       color: #333;
+      overflow-x: hidden;
     }
     header {
       background: #9b2226;
@@ -22,7 +24,10 @@
       font-family: 'Playfair Display', serif;
       letter-spacing: 2px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      animation: slideDown 1s ease;
     }
+
+    /* Hero Section */
     .hero {
       padding: 3rem 2rem;
       text-align: center;
@@ -31,18 +36,37 @@
       margin: 2rem auto;
       max-width: 900px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeInUp 1.2s ease;
     }
     .hero h1 {
       margin: 0;
       font-size: 2.5rem;
       color: #780000;
       font-family: 'Playfair Display', serif;
+      animation: float 3s ease-in-out infinite;
     }
     .hero p {
       font-size: 1.1rem;
       margin-top: 0.8rem;
       color: #444;
     }
+
+    /* Search & Filter */
+    .search-filter {
+      text-align: center;
+      margin: 2rem;
+    }
+    .search-filter input, .search-filter select {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      margin: 0.5rem;
+      width: 250px;
+      max-width: 90%;
+    }
+
+    /* Product Grid */
     .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -60,9 +84,11 @@
       padding: 1.5rem 1rem;
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
     }
     .card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-8px) scale(1.02);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     .card img {
@@ -72,10 +98,10 @@
       border-radius: 12px;
       background: #f9f9f9;
       margin-bottom: 1rem;
-      transition: transform 0.3s;
+      transition: transform 0.4s ease;
     }
     .card:hover img {
-      transform: scale(1.05);
+      transform: scale(1.1) rotate(1deg);
     }
     .card h1 {
       font-size: 1.4rem;
@@ -95,25 +121,31 @@
       font-weight: bold;
       margin: 1rem 0;
     }
+
+    /* Buttons */
     .btn {
-      background: #0077b6;
+      background: #25d366; /* WhatsApp green */
       color: white;
       padding: 0.7rem 1.5rem;
       border-radius: 25px;
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: background 0.3s, transform 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: inline-block;
     }
     .btn:hover {
-      background: #023e8a;
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
     }
+
+    /* Services */
     .services {
       padding: 3rem 2rem;
       background: #f8f9fa;
       text-align: center;
       border-top: 3px solid #9b2226;
+      animation: fadeIn 1.5s ease;
     }
     .services h2 {
       margin-bottom: 1rem;
@@ -132,6 +164,8 @@
       margin: 1.5rem 0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -139,6 +173,25 @@
       color: #fff;
       background: #9b2226;
       margin-top: 2rem;
+      animation: fadeIn 2s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
   </style>
 </head>
@@ -151,119 +204,138 @@
     <p>Explore our collection of traditional & modern wear with custom tailoring.</p>
   </section>
 
-  <section class="categories">
-    <!-- Casual Wear -->
-    <div class="card">
+  <!-- Search & Filter -->
+  <div class="search-filter">
+    <input type="text" id="searchBox" placeholder="Search products...">
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="uniform">Uniform</option>
+      <option value="formal">Formal Wear</option>
+      <option value="traditional">Traditional</option>
+      <option value="accessory">Accessories</option>
+    </select>
+  </div>
+
+  <!-- Products Section -->
+  <section class="categories" id="productGrid">
+    <!-- All 17 product cards -->
+    <div class="card" data-category="formal">
       <img src="Pant.jpg" alt="Pant">
       <h1>Pant</h1>
-      <h2>Formal, Informal etc</h2>
-      <p class="price">From 35dh to 45dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Pant">Enquire on WhatsApp</a>
+      <h2>Formal, Informal</h2>
+      <p class="price">35dh – 45dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Pant">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="ShirtB.jpg" alt="Shirt">
+
+    <div class="card" data-category="formal">
+      <img src="Shirt.jpg" alt="Shirt">
       <h1>Shirt</h1>
-      <h2>Formal, Party Wear, Pattern</h2>
-      <h3>Customisation available</h3>
-      <p class="price">From 35dh to 55dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Shirt">Enquire on WhatsApp</a>
+      <h2>Formal, Informal</h2>
+      <p class="price">35dh – 45dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Shirt">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
+
+    <div class="card" data-category="formal">
       <img src="Tshirt.jpg" alt="T-Shirt">
       <h1>T-Shirt</h1>
-      <h2>Polo, Collar, Full Sleeves, Half Sleeves</h2>
-      <h3>Fabrics: Dryfit, Cotton, Mesh, Pk Mesh, Coolfit, Honeycomb</h3>
-      <p class="price">From 26dh to 53dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20T-Shirt">Enquire on WhatsApp</a>
+      <h2>Round Neck, Polo</h2>
+      <p class="price">20dh – 35dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20T-Shirt">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="Cargo Pant.jpg" alt="Cargo Pant">
+
+    <div class="card" data-category="formal">
+      <img src="CargoPant.jpg" alt="Cargo Pant">
       <h1>Cargo Pant</h1>
-      <h2>6 Pockets, 4 Pockets</h2>
-      <h3>Customisation Available</h3>
-      <p class="price">From 50dh to 100dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Cargo%20Pant">Enquire on WhatsApp</a>
+      <p class="price">40dh – 55dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Cargo%20Pant">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
+
+    <div class="card" data-category="accessory">
       <img src="Tie.jpg" alt="Tie">
       <h1>Tie</h1>
-      <p class="price">From 15dh to 25dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Tie">Enquire on WhatsApp</a>
+      <p class="price">15dh – 25dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Tie">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="caps.jpg" alt="Caps">
-      <h1>Caps</h1>
-      <h2>All Colors Available</h2>
-      <p class="price">From 15dh to 28dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Caps">Enquire on WhatsApp</a>
+
+    <div class="card" data-category="accessory">
+      <img src="Cap.jpg" alt="Cap">
+      <h1>Cap</h1>
+      <p class="price">10dh – 20dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Cap">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="blazer.png" alt="Blazer">
+
+    <div class="card" data-category="formal">
+      <img src="Blazer.jpg" alt="Blazer">
       <h1>Blazer</h1>
-      <h2>Formal for Gents & Ladies</h2>
-      <p class="price">From 200dh to 300dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Blazer">Enquire on WhatsApp</a>
+      <p class="price">100dh – 150dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Blazer">Enquire on WhatsApp</a>
     </div>
 
-    <!-- Uniforms -->
-    <div class="card">
-      <img src="labour.jpg" alt="Labour Uniform">
+    <div class="card" data-category="uniform">
+      <img src="LabourUniform.jpg" alt="Labour Uniform">
       <h1>Labour Uniform</h1>
-      <p class="price">From 75dh to 150dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Labour%20Uniform">Enquire on WhatsApp</a>
-    </div>
-    <div class="card">
-      <img src="school.jpg" alt="School Uniform">
-      <h1>School Uniform</h1>
-      <p class="price">From 30dh to 70dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20School%20Uniform">Enquire on WhatsApp</a>
-    </div>
-    <div class="card">
-      <img src="Corporate.jpg" alt="Corporate Uniform">
-      <h1>Corporate Uniform</h1>
-      <p class="price">From 75dh to 120dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Corporate%20Uniform">Enquire on WhatsApp</a>
+      <p class="price">50dh – 70dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Labour%20Uniform">Enquire on WhatsApp</a>
     </div>
 
-    <!-- Traditional -->
-    <div class="card">
-      <img src="kurta saya fabric.jpg" alt="Kurta/Saaya/Izaar">
-      <h1>Kurta / Saaya / Izaar Fabrics</h1>
-      <p class="price">From 130dh to 180dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Kurta%20Saaya%20Izaar">Enquire on WhatsApp</a>
+    <div class="card" data-category="uniform">
+      <img src="SchoolUniform.jpg" alt="School Uniform">
+      <h1>School Uniform</h1>
+      <p class="price">From 60dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20School%20Uniform">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="Color Kurta C.jpg" alt="Color Kurta">
+
+    <div class="card" data-category="uniform">
+      <img src="CorporateUniform.jpg" alt="Corporate Uniform">
+      <h1>Corporate Uniform</h1>
+      <p class="price">From 80dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Corporate%20Uniform">Enquire on WhatsApp</a>
+    </div>
+
+    <div class="card" data-category="traditional">
+      <img src="Kurta.jpg" alt="Kurta">
+      <h1>Kurta</h1>
+      <p class="price">50dh – 70dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Kurta">Enquire on WhatsApp</a>
+    </div>
+
+    <div class="card" data-category="traditional">
+      <img src="ColorKurta.jpg" alt="Color Kurta">
       <h1>Color Kurta</h1>
-      <p class="price">From 45dh to 80dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Color Kurta">Enquire on WhatsApp</a>
+      <p class="price">60dh – 80dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Color%20Kurta">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="Pehran.png" alt="Pehran">
+
+    <div class="card" data-category="traditional">
+      <img src="Pehran.jpg" alt="Pehran">
       <h1>Pehran</h1>
-      <p class="price">From 50dh to 80dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Pehran">Enquire on WhatsApp</a>
+      <p class="price">40dh – 60dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Pehran">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="Sherwani.png" alt="Sherwani">
+
+    <div class="card" data-category="traditional">
+      <img src="Sherwani.jpg" alt="Sherwani">
       <h1>Sherwani</h1>
-      <p class="price">From 150dh to 250dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Sherwani">Enquire on WhatsApp</a>
+      <p class="price">200dh – 300dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Sherwani">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="Rida.png" alt="Rida">
+
+    <div class="card" data-category="traditional">
+      <img src="Rida.jpg" alt="Rida">
       <h1>Rida</h1>
-      <p class="price">From 70dh to 250dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Rida">Enquire on WhatsApp</a>
+      <p class="price">70dh – 100dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Rida">Enquire on WhatsApp</a>
     </div>
-    <div class="card">
-      <img src="Topi.png" alt="Topi">
+
+    <div class="card" data-category="accessory">
+      <img src="Topi.jpg" alt="Topi">
       <h1>Topi</h1>
-      <p class="price">From 45dh to 60dh</p>
-      <a class="btn" href="https://wa.me/971501523584?text=Hello,%20I%20would%20like%20to%20enquire%20about%20Topi">Enquire on WhatsApp</a>
+      <p class="price">15dh – 30dh</p>
+      <a class="btn" href="https://wa.me/971501523584?text=Enquiry%20about%20Topi">Enquire on WhatsApp</a>
     </div>
   </section>
 
+  <!-- Services Section -->
   <section class="services">
     <h2>Custom Tailoring & Services</h2>
     <p>We offer customized embroidery, DTF printing, sublimation, and personal tailoring. Bring your cloth and we will stitch it perfectly for you.</p>
@@ -276,6 +348,35 @@
   <footer>
     © 2025 Rida & Topi Shop. All rights reserved.
   </footer>
+
+  <script>
+    // Search & Filter functionality
+    const searchBox = document.getElementById('searchBox');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const cards = document.querySelectorAll('.card');
+
+    function filterProducts() {
+      const searchText = searchBox.value.toLowerCase();
+      const category = categoryFilter.value;
+
+      cards.forEach(card => {
+        const title = card.querySelector('h1').innerText.toLowerCase();
+        const productCategory = card.dataset.category;
+
+        if (
+          (title.includes(searchText)) &&
+          (category === 'all' || category === productCategory)
+        ) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    searchBox.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+  </script>
 
 </body>
 </html>
