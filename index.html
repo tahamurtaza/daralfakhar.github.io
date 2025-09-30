@@ -280,6 +280,55 @@
             text-align: center;
         }
 
+        /* Image Navigation */
+        .image-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .image-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .image-nav.prev {
+            left: 10px;
+        }
+        .image-nav.next {
+            right: 10px;
+        }
+        .image-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            z-index: 2;
+        }
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: background var(--transition);
+        }
+        .indicator-dot.active {
+            background: rgba(255, 255, 255, 1);
+        }
+
         /* --- Services --- */
         .services-section {
             padding: 60px 0;
@@ -342,165 +391,6 @@
             color: var(--accent-hover);
         }
 
-        /* --- Modal --- */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            z-index: 999;
-            opacity: 0;
-            transition: opacity var(--transition);
-        }
-        .modal.show {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-card {
-            width: 100%;
-            max-width: 980px;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .modal-left {
-            padding: 24px;
-        }
-        .modal-right {
-            padding: 24px;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .close-btn {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--muted);
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 1;
-        }
-        .close-btn:hover {
-            background: #f1f1f1;
-            color: var(--text);
-        }
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin: 0 0 8px;
-            color: var(--accent);
-        }
-        .modal-price {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--accent-hover);
-            margin: 8px 0 16px;
-        }
-        .modal-desc {
-            color: var(--muted);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-        .modal-actions .btn {
-            padding: 12px 24px;
-        }
-        .modal-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        /* Modal Carousel */
-        .carousel {
-            position: relative;
-        }
-        .carousel-main-img {
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
-            object-position: center;
-            padding: 20px;
-            border-radius: 12px;
-            background: #f8f9fa;
-        }
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background var(--transition);
-        }
-        .carousel-nav:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .carousel-nav.prev {
-            left: 10px;
-        }
-        .carousel-nav.next {
-            right: 10px;
-        }
-        .thumbs {
-            display: flex;
-            gap: 10px;
-            margin-top: 16px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .thumbs::-webkit-scrollbar {
-            display: none;
-        }
-        .thumbs img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        .thumbs img.active, .thumbs img:hover {
-            opacity: 1;
-            border-color: var(--accent);
-        }
-
-        @media (max-width: 992px) {
-            .modal-card {
-                grid-template-columns: 1fr;
-            }
-            .modal-left, .modal-right {
-                padding: 20px;
-            }
-            .carousel-main-img {
-                height: 280px;
-            }
-        }
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -527,6 +417,11 @@
             }
             .footer-content {
                 flex-direction: column;
+            }
+            .image-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -576,209 +471,337 @@
             <h2 class="section-title">Our Products</h2>
             <div class="grid" id="grid">
                 <article class="product" data-category="formal" data-images='["Pant.jpg","Pant_2.jpg"]' data-name="Pant" data-price="35dh – 45dh" data-desc="Formal, Informal">
-                    <div class="media"><img src="Pant.jpg" alt="Pant"></div>
+                    <div class="media">
+                        <img src="Pant.jpg" alt="Pant">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Pant</h3>
                         <h4>Formal & Informal Styles</h4>
                         <div class="price">35dh – 45dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Pant" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Pant" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="formal" data-images='["Shirt.jpg","Shirt_2.jpg"]' data-name="Shirt" data-price="35dh – 55dh" data-desc="Formal, Informal">
-                    <div class="media"><img src="shirtc.jpg" alt="Shirt"></div>
+                    <div class="media">
+                        <img src="shirtc.jpg" alt="Shirt">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Shirt</h3>
                         <h4>Formal & Informal Styles</h4>
                         <div class="price">35dh – 55dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Shirt" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Shirt" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
-                <article class="product" data-category="formal" data-images='["Tshirt.jpg","Tshirt_2.jpg"]' data-name="T-Shirt" data-price="26dh – 53dh" data-desc="Round Neck, Polo">
-                    <div class="media"><img src="Tshirt.jpg" alt="T-Shirt"></div>
+                <article class="product" data-category="formal" data-images='["https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/T12415s5.jpg?im=Resize,width=750","https://content-management-files.canva.com/cdn-cgi/image/f=auto,q=70/2fdbd7ab-f378-4c63-8b21-c944ad2633fd/header_t-shirts2.jpg","https://full.eenvoudigekleding.nl/clr/dames-eenvoudig-t-shirt-petrol-blue-408-1722783801.webp"]' data-name="T-Shirt" data-price="26dh – 53dh" data-desc="Round Neck, Polo">
+                    <div class="media">
+                        <img src="Tshirt.jpg" alt="T-Shirt">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>T-Shirt</h3>
                         <h4>Round Neck & Polo Styles</h4>
                         <div class="price">26dh – 53dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20T-Shirt" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20T-Shirt" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="formal" data-images='["Cargo Pant.jpg","CargoPant_2.jpg"]' data-name="Cargo Pant" data-price="50dh – 100dh" data-desc="Cargo style pant with pockets">
-                    <div class="media"><img src="Cargo Pant.jpg" alt="Cargo Pant"></div>
+                    <div class="media">
+                        <img src="Cargo Pant.jpg" alt="Cargo Pant">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Cargo Pant</h3>
                         <h4>Durable Cargo Style</h4>
                         <div class="price">50dh – 100dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Cargo%20Pant" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Cargo%20Pant" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="accessory" data-images='["Tie.jpg","Tie_2.jpg"]' data-name="Tie" data-price="15dh – 25dh" data-desc="Classic ties for formal wear">
-                    <div class="media"><img src="Tie.jpg" alt="Tie"></div>
+                    <div class="media">
+                        <img src="Tie.jpg" alt="Tie">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Tie</h3>
                         <h4>Classic Formal Ties</h4>
                         <div class="price">15dh – 25dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Tie" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Tie" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="accessory" data-images='["caps.jpg","caps_2.jpg"]' data-name="Cap" data-price="10dh – 28dh" data-desc="Caps available in various colors">
-                    <div class="media"><img src="caps.jpg" alt="Cap"></div>
+                    <div class="media">
+                        <img src="caps.jpg" alt="Cap">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Cap</h3>
                         <h4>Available in Various Colors</h4>
                         <div class="price">10dh – 28dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Cap" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Cap" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="formal" data-images='["blazer.jpg","blazer_2.jpg"]' data-name="Blazer" data-price="200dh – 300dh" data-desc="Premium blazers for corporate look">
-                    <div class="media"><img src="blazer.png" alt="Blazer"></div>
+                    <div class="media">
+                        <img src="blazer.png" alt="Blazer">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Blazer</h3>
                         <h4>Premium Corporate Look</h4>
                         <div class="price">200dh – 300dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Blazer" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Blazer" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="uniform" data-images='["labour.jpg","labour_2.jpg"]' data-name="Labour Uniform" data-price="75dh – 150dh" data-desc="Durable workwear for labor staff">
-                    <div class="media"><img src="labour.jpg" alt="Labour Uniform"></div>
+                    <div class="media">
+                        <img src="labour.jpg" alt="Labour Uniform">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Labour Uniform</h3>
                         <h4>Durable & Hard-Wearing</h4>
                         <div class="price">75dh – 150dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Labour%20Uniform" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Labour%20Uniform" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="uniform" data-images='["school.jpg","school_2.jpg"]' data-name="School Uniform" data-price="30dh - 70dh" data-desc="Complete school uniform stitching">
-                    <div class="media"><img src="school.jpg" alt="School Uniform"></div>
+                    <div class="media">
+                        <img src="school.jpg" alt="School Uniform">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>School Uniform</h3>
                         <h4>Complete Uniform Stitching</h4>
                         <div class="price">30dh - 70dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20School%20Uniform" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20School%20Uniform" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="uniform" data-images='["corporate.jpg","corporate_2.jpg"]' data-name="Corporate Uniform" data-price="75dh - 120dh" data-desc="Professional corporate uniform solutions">
-                    <div class="media"><img src="Corporate.jpg" alt="Corporate Uniform"></div>
+                    <div class="media">
+                        <img src="Corporate.jpg" alt="Corporate Uniform">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Corporate Uniform</h3>
                         <h4>Professional & Tailored</h4>
                         <div class="price">75dh - 120dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Corporate%20Uniform" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Corporate%20Uniform" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="traditional" data-images='["kurta saya fabric.jpg","kurta_2.jpg"]' data-name="Kurta Saya Izaar Fabric" data-price="130dh – 180dh" data-desc="Kurta Saya with Izaar fabric">
-                    <div class="media"><img src="kurta saya fabric.jpg" alt="Kurta"></div>
+                    <div class="media">
+                        <img src="kurta saya fabric.jpg" alt="Kurta">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Kurta Saya Izaar Fabric</h3>
                         <h4>Classic Traditional Wear</h4>
                         <div class="price">130dh – 180dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Kurta" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Kurta" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="traditional" data-images='["Color Kurta C.jpg","colorkurta_2.jpg"]' data-name="Color Kurta" data-price="40dh – 60dh" data-desc="Colorful kurta options">
-                    <div class="media"><img src="Color Kurta C.jpg" alt="Color Kurta"></div>
+                    <div class="media">
+                        <img src="Color Kurta C.jpg" alt="Color Kurta">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Color Kurta</h3>
                         <h4>Colorful Kurta Options</h4>
                         <div class="price">40dh – 60dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Color%20Kurta" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Color%20Kurta" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="traditional" data-images='["Pehran.png","pehran_2.jpg"]' data-name="Pehran" data-price="40dh – 60dh" data-desc="Pehran traditional wear">
-                    <div class="media"><img src="Pehran.png" alt="Pehran"></div>
+                    <div class="media">
+                        <img src="Pehran.png" alt="Pehran">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Pehran</h3>
                         <h4>Traditional Pehran Wear</h4>
                         <div class="price">40dh – 60dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Pehran" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Pehran" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="traditional" data-images='["S.jpg","sherwani_2.jpg"]' data-name="Sherwani" data-price="150dh – 250dh" data-desc="Sherwani in premium fabrics">
-                    <div class="media"><img src="S.jpg" alt="Sherwani"></div>
+                    <div class="media">
+                        <img src="S.jpg" alt="Sherwani">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Sherwani</h3>
                         <h4>Premium Fabrics</h4>
                         <div class="price">150dh – 250dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Sherwani" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Sherwani" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="traditional" data-images='["Rida.png","rida_2.jpg"]' data-name="Rida" data-price="70dh – 250dh" data-desc="Rida — modest traditional wear">
-                    <div class="media"><img src="Rida.png" alt="Rida"></div>
+                    <div class="media">
+                        <img src="Rida.png" alt="Rida">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Rida</h3>
                         <h4>Modest Traditional Wear</h4>
                         <div class="price">70dh – 250dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Rida" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Rida" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
 
                 <article class="product" data-category="accessory" data-images='["Topi.png","topi_2.jpg"]' data-name="Topi" data-price="45dh – 60dh" data-desc="Topi caps in multiple designs">
-                    <div class="media"><img src="Topi.png" alt="Topi"></div>
+                    <div class="media">
+                        <img src="Topi.png" alt="Topi">
+                        <button class="image-nav prev">❮</button>
+                        <button class="image-nav next">❯</button>
+                        <div class="image-indicator">
+                            <div class="indicator-dot active"></div>
+                            <div class="indicator-dot"></div>
+                        </div>
+                    </div>
                     <div class="body">
                         <h3>Topi</h3>
                         <h4>Multiple Designs & Colors</h4>
                         <div class="price">45dh – 60dh</div>
                         <div class="actions">
-                            <button class="btn primary more">More Info</button>
-                            <a class="btn ghost" href="https://wa.me/971501523584?text=Enquiry%20about%20Topi" target="_blank">WhatsApp</a>
+                            <a class="btn primary" href="https://wa.me/971501523584?text=Enquiry%20about%20Topi" target="_blank">WhatsApp</a>
+                            <a class="btn ghost" href="tel:+971501523584">Call</a>
                         </div>
                     </div>
                 </article>
@@ -832,29 +855,6 @@
 
     </main>
 
-    <div class="modal" id="modal">
-        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button class="close-btn" id="close">✕</button>
-            <div class="modal-left">
-                <div class="carousel" id="carousel">
-                    <img class="carousel-main-img" src="" alt="Main product image">
-                    <div class="thumbs" id="thumbs"></div>
-                    <button class="carousel-nav prev" id="prev">❮</button>
-                    <button class="carousel-nav next" id="next">❯</button>
-                </div>
-            </div>
-            <div class="modal-right">
-                <h3 id="modalTitle" class="modal-title">Product Title</h3>
-                <div id="modalPrice" class="modal-price">Price</div>
-                <p id="modalDesc" class="modal-desc">Description</p>
-                <div class="modal-actions">
-                    <a id="enquireLink" class="btn primary" target="_blank">Enquire on WhatsApp</a>
-                    <a id="quickCall" class="btn ghost" href="tel:+971501523584">Call</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer>
         <div class="container footer-content">
             <div style="color:var(--muted)">© 2025 Dar Al Fakhar Tailoring — All rights reserved</div>
@@ -896,78 +896,61 @@
         }));
         searchInput.addEventListener('input', filterProducts);
         
-        // Modal Logic
-        const modal = document.getElementById('modal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalPrice = document.getElementById('modalPrice');
-        const enquireLink = document.getElementById('enquireLink');
-        const mainImage = modal.querySelector('.carousel-main-img');
-        const thumbsContainer = document.getElementById('thumbs');
-        const prevBtn = document.getElementById('prev');
-        const nextBtn = document.getElementById('next');
-        const closeBtn = document.getElementById('close');
-
-        let currentImages = [];
-        let currentIndex = 0;
-
-        function openModal(product) {
-            const name = product.dataset.name;
-            const price = product.dataset.price;
-            const desc = product.dataset.desc || '';
-            currentImages = JSON.parse(product.dataset.images);
-
-            modalTitle.textContent = name;
-            modalPrice.textContent = price;
-            modalDesc.textContent = desc;
-            enquireLink.href = `https://wa.me/971501523584?text=Enquiry%20about%20${encodeURIComponent(name)}`;
-
-            // Build thumbnails
-            thumbsContainer.innerHTML = '';
-            currentImages.forEach((src, i) => {
-                const thumb = document.createElement('img');
-                thumb.src = src;
-                thumb.alt = `${name} thumbnail ${i + 1}`;
-                thumb.dataset.index = i;
-                thumb.addEventListener('click', () => showImage(i));
-                thumbsContainer.appendChild(thumb);
+        // Image Navigation Logic
+        function initImageNavigation() {
+            products.forEach(product => {
+                const media = product.querySelector('.media');
+                const img = media.querySelector('img');
+                const prevBtn = media.querySelector('.prev');
+                const nextBtn = media.querySelector('.next');
+                const dots = media.querySelectorAll('.indicator-dot');
+                
+                const images = JSON.parse(product.dataset.images);
+                let currentIndex = 0;
+                
+                // Update image and indicators
+                function updateImage(index) {
+                    currentIndex = index;
+                    img.src = images[currentIndex];
+                    
+                    // Update dots
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentIndex);
+                    });
+                    
+                    // Show/hide navigation buttons based on number of images
+                    if (images.length <= 1) {
+                        prevBtn.style.display = 'none';
+                        nextBtn.style.display = 'none';
+                    } else {
+                        prevBtn.style.display = 'flex';
+                        nextBtn.style.display = 'flex';
+                    }
+                }
+                
+                // Event listeners for navigation buttons
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    let newIndex = currentIndex - 1;
+                    if (newIndex < 0) newIndex = images.length - 1;
+                    updateImage(newIndex);
+                });
+                
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    let newIndex = currentIndex + 1;
+                    if (newIndex >= images.length) newIndex = 0;
+                    updateImage(newIndex);
+                });
+                
+                // Initialize with first image
+                updateImage(0);
             });
-
-            showImage(0);
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
         }
-
-        function showImage(index) {
-            currentIndex = (index + currentImages.length) % currentImages.length;
-            mainImage.src = currentImages[currentIndex];
-            thumbsContainer.querySelectorAll('img').forEach(img => {
-                img.classList.toggle('active', +img.dataset.index === currentIndex);
-            });
-        }
-
-        function closeModal() {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
-        }
-
-        prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
-        nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // Attach 'More Info' button listeners
-        document.querySelectorAll('.product .more').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const product = e.currentTarget.closest('.product');
-                openModal(product);
-            });
-        });
-
+        
         // Initial setup
         filterProducts();
+        initImageNavigation();
     </script>
 </body>
 </html>
